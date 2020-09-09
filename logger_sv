@@ -1,0 +1,45 @@
+local logs = ""
+local communityname = "OesteRP Logs | By Joseantonio_28"
+local communtiylogo = "https://imgur.com/d7PcFhw.png" --Must end with .png
+
+AddEventHandler('playerConnecting', function()
+local name = GetPlayerName(source)
+local ip = GetPlayerEndpoint(source)
+local ping = GetPlayerPing(source)
+local steamhex = GetPlayerIdentifier(source)
+local connect = {
+        {
+            ["color"] = "1127128",
+            ["title"] = "Player Connected to Server #1",
+            ["description"] = "Player: **"..name.."**\nIP: **"..ip.."**\n Steam Hex: **"..steamhex.."**",
+	        ["footer"] = {
+                ["text"] = communityname,
+                ["icon_url"] = communtiylogo,
+            },
+        }
+    }
+
+PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "OesteRP Logs | By Joseantonio_28", embeds = connect}), { ['Content-Type'] = 'application/json' })
+end)
+
+AddEventHandler('playerDropped', function(reason)
+local name = GetPlayerName(source)
+local ip = GetPlayerEndpoint(source)
+local ping = GetPlayerPing(source)
+local steamhex = GetPlayerIdentifier(source)
+local disconnect = {
+        {
+            ["color"] = "14177041",
+            ["title"] = "Player Disconnected from Server #1",
+            ["description"] = "Player: **"..name.."** \nReason: **"..reason.."**\nIP: **"..ip.."**\n Steam Hex: **"..steamhex.."**",
+	        ["footer"] = {
+                ["text"] = communityname,
+                ["icon_url"] = communtiylogo,
+            },
+        }
+    }
+
+    PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "OesteRP Logs | By Joseantonio_28", embeds = disconnect}), { ['Content-Type'] = 'application/json' })
+end)
+
+-- Estos son Logs de Cónexiones y Desconexiones para tu sv de Fivem By Joseantonio_28. Espero que os guste :D © Joseantonio_28
